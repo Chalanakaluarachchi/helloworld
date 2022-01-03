@@ -1,31 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to the helloworld"/>
-  </div>
+	<div id="app">
+		<PageTitle :title="getPageTitle" />
+		<Dashboard />
+		<Message class="message--local-storage message--rounded-one-line">
+			<p>
+				This application uses the browser's Local Storage to store data
+			</p>
+		</Message>
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+	import {mapGetters} from 'vuex';
+	import PageTitle from '@/components/Page/PageTitle.vue';
+	import Dashboard from '@/components/Dashboard/Dashboard.vue';
+	import Message from '@/components/UI/Message.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+	export default {
+		components: {
+			PageTitle,
+			Dashboard,
+			Message
+		},
+		computed: {
+			...mapGetters(['getPageTitle'])
+		}
+	};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
-<style>
-@import '/assets/style.css';
+<style lang="scss">
+	#app {
+		width: 100%;
+	}
+
+	[v-cloak] {
+		display: none;
+	}
 </style>
